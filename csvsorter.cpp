@@ -62,6 +62,26 @@ vector<int> process_csv(string file_name)
 }
 
 
+vector<int> sort_numbers(vector<int> numbers){
+    vector<int> numbers_sorted{};
+    bool is_inserted = false; // checks if the number has already been inserted into the sorted vector
+
+    for(unsigned int i = 0; i< numbers.size(); i++){// iterrate through list one
+        is_inserted = false;
+        for(unsigned int j = 0; j< numbers_sorted.size(); j++){// iterate through list two per value in list one
+            if(numbers.at(i) < numbers_sorted.at(j)){
+                numbers_sorted.insert(numbers_sorted.begin(), numbers.at(i));
+                is_inserted = true;
+            }
+        }
+        if(!is_inserted){
+            numbers_sorted.push_back(numbers.at(i));
+        }
+    }
+
+    return numbers_sorted;
+} 
+
 int main()
 {
     return 0;
