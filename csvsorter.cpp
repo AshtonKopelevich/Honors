@@ -71,11 +71,12 @@ vector<int> sort_numbers(vector<int> numbers){
 
         for(unsigned int j = 0; j< numbers_sorted.size(); j++){// iterate through list two per value in list one
             if(numbers.at(i) < numbers_sorted.at(j)){
-                numbers_sorted.insert(numbers_sorted.begin(), numbers.at(i));
+                numbers_sorted.insert(numbers_sorted.begin()+j, numbers.at(i));
                 is_inserted = true;
-                break;
+                break;//breaks out when found
             }
         }
+
         if(!is_inserted){
             numbers_sorted.push_back(numbers.at(i));
         }
