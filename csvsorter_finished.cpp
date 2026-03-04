@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <limits>
 
 using std::vector;
 using std::string;
@@ -42,7 +43,7 @@ vector<int> process_csv(string file_name)
             
             //split a csv line into separate values
             string str_num = ""; //each unique number, but gotten raw from the string
-            for(int i = 0; i < line.size(); i++)
+            for(size_t i = 0; i < line.size(); i++)
             {
                 if(line.at(i) == ',')
                 {
@@ -53,6 +54,12 @@ vector<int> process_csv(string file_name)
                 }
                 str_num += line.at(i);
             }
+            if(line.at(line.size()-1) != ',')
+            {
+               int num = string_to_int(str_num);
+               values.push_back(num);
+            }
+
         }
     }
     else
@@ -63,17 +70,17 @@ vector<int> process_csv(string file_name)
     return(values);
 }
 
-
 vector<int> sort_numbers(vector<int> numbers){
     vector<int> numbers_sorted{};
     bool is_inserted = false; // checks if the number has already been inserted into the sorted vector
 
     for(unsigned int i = 0; i< numbers.size(); i++){// iterrate through list one
         is_inserted = false;
-        for(unsigned int j = 0; j< numbers_sorted.size(); j++){// iterate through list two per value in list one
+        for(unsigned int j = 0; j < numbers_sorted.size(); j++){// iterate through list two per value in list one
             if(numbers.at(i) < numbers_sorted.at(j)){
                 numbers_sorted.insert(numbers_sorted.begin(), numbers.at(i));
                 is_inserted = true;
+                break;
             }
         }
         if(!is_inserted){
@@ -82,7 +89,7 @@ vector<int> sort_numbers(vector<int> numbers){
     }
 
     return numbers_sorted;
-} 
+}
 
 void print_min_and_max(vector<int> numbers)
 {
