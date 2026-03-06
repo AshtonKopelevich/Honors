@@ -56,7 +56,7 @@ vector<int> process_csv(string file_name)
                 }
                 str_num += line.at(i);
             }
-            if(line.at(line.size()-1) != ',')
+            if(line.size() != 0 && line.at(line.size()-1) != ',')
             {
                int num = string_to_int(str_num);
                values.push_back(num);
